@@ -1,8 +1,10 @@
+import java.util.Objects;
+
 public class Client {
-    private static final String IPAD = "localhost";
-    private static final int PORT = 8080;
+    private static final String HOST = Settings.instSettings("host");
+    private static final int PORT = Integer.parseInt(Objects.requireNonNull(Settings.instSettings("port")));
 
     public static void main(String[] args) {
-        new SomethingClient(IPAD, PORT);
+        new SomethingClient(HOST, PORT);
     }
 }
