@@ -90,6 +90,7 @@ public class SomethingClient {
                     userWord = inputUser.readLine();
                     if (userWord.equals("/exit")) {
                         out.write("/exit" + "\n");
+                        System.out.println(nickname + " вышел(ла) из чата!");
                         SomethingClient.this.downService();
                         break;
                     } else {
