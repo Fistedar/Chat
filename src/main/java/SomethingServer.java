@@ -38,9 +38,7 @@ public class SomethingServer extends Thread {
                         vr.send(word);
                     }
                 }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
+            } catch (NullPointerException ignored) {}
 
 
         } catch (IOException e) {

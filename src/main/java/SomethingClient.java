@@ -52,9 +52,7 @@ public class SomethingClient {
                 in.close();
                 out.close();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException ignored) {}
     }
 
     private class ReadMsg extends Thread {
@@ -64,7 +62,7 @@ public class SomethingClient {
             try {
                 while (true) {
                     str = in.readLine();
-                    if (str.equals("stop")) {
+                    if (str.equals("/exit")) {
                         SomethingClient.this.downService();
                         break;
                     }
