@@ -28,7 +28,7 @@ public class SomethingServer extends Thread {
 
                 while (true) {
                     word = in.readLine();
-                    if (word.equals("stop")) {
+                    if (word.equals("/exit")) {
                         this.downService();
                         break;
                     }

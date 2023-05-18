@@ -38,7 +38,7 @@ public class SomethingClient {
         System.out.print("Введите имя:  ");
         try {
             nickname = inputUser.readLine();
-            out.write("Здраствуй " + nickname + "\n");
+            out.write(nickname + " вошёл(ла) в чат \n");
             out.flush();
         } catch (IOException e) {
             System.err.println("pressNickname failed");
@@ -63,13 +63,13 @@ public class SomethingClient {
             String str;
             try {
                 while (true) {
-                    str = in.readLine(); // ждем сообщения с сервера
+                    str = in.readLine();
                     if (str.equals("stop")) {
-                        SomethingClient.this.downService(); // харакири
-                        break; // выходим из цикла если пришло "stop"
+                        SomethingClient.this.downService();
+                        break;
                     }
 
-                    System.out.println(str); // пишем сообщение с сервера на консоль
+                    System.out.println(str);
                 }
             } catch (IOException e) {
                 SomethingClient.this.downService();
@@ -86,22 +86,22 @@ public class SomethingClient {
                 String userWord;
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-                    time = new Date(); // текущая дата
-                    SimpleDateFormat dt1 = new SimpleDateFormat("HH:mm:ss"); // берем только время до секунд
-                    String dtime = dt1.format(time); // время
-                    userWord = inputUser.readLine(); // сообщения с консоли
-                    if (userWord.equals("stop")) {
-                        out.write("stop" + "\n");
-                        SomethingClient.this.downService(); // харакири
-                        break; // выходим из цикла если пришло "stop"
+                    time = new Date();
+                    SimpleDateFormat dt1 = new SimpleDateFormat("HH:mm:ss");
+                    String dtime = dt1.format(time);
+                    userWord = inputUser.readLine();
+                    if (userWord.equals("/exit")) {
+                        out.write("/exit" + "\n");
+                        SomethingClient.this.downService();
+                        break;
                     } else {
                         writer.write("(" + dtime + ") " + nickname + ": " + userWord + "\n");
-                        out.write("(" + dtime + ") " + nickname + ": " + userWord + "\n"); // отправляем на сервер
+                        out.write("(" + dtime + ") " + nickname + ": " + userWord + "\n");
                     }
                     writer.flush();
-                    out.flush(); // чистим
+                    out.flush();
                 } catch (IOException e) {
-                    SomethingClient.this.downService(); // в случае исключения тоже харакири
+                    SomethingClient.this.downService();
 
                 }
 
